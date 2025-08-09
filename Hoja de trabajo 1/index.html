@@ -2,82 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Excursión a Semuc Champey</title>
+  <title>Inicio | Semuc Champey</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Excursión a Semuc Champey</h1>
-
-  <nav>
-    <a href="#descripcion">Descripción</a>
-    <a href="#galeria">Galería</a>
-    <a href="#itinerario">Itinerario</a>
-    <a href="#actividades">Actividades</a>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container">
+      <a class="navbar-brand" href="#">Semuc Champey</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="atracciones.html">Atracciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="alojamiento.html">Alojamiento</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
-  <section id="descripcion">
-    <h2>Descripción del Lugar</h2>
-    <p>Semuc Champey se encuentra en Alta Verapaz, Guatemala. Es famoso por sus piscinas naturales de agua turquesa rodeadas de exuberante selva tropical. Este destino es ideal para disfrutar de la naturaleza, explorar cuevas, y nadar en aguas cristalinas.</p>
-  </section>
+  <!-- Hero Section -->
+  <div class="container mt-5 text-center">
+    <h1 class="text-success">Bienvenidos a Semuc Champey</h1>
+    <p class="lead">Explora uno de los destinos naturales más impresionantes de Guatemala.</p>
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#infoModal">Más información</button>
+  </div>
 
-  <section id="galeria">
-    <h2>Galería de Imágenes</h2>
-    <img src="imagen1.jpg" alt="Vista aérea de Semuc Champey" width="300" height="300">
-    <img src="imagen2.jpg" alt="Piscinas naturales" width="300" height="300">
-    <img src="imagen3.jpeg" alt="Sendero ecológico" width="300" height="300">
-    <img src="imagen4.jpg" alt="Cueva cercana" width="300" height="300">
-  </section>
+  <!-- Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">Sobre Semuc Champey</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Semuc Champey es un paraíso escondido en Alta Verapaz, famoso por sus piscinas naturales de agua turquesa.
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <section id="itinerario">
-    <h2>Tabla de Itinerario</h2>
-    <table>
-      <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Actividad</th>
-        <th>Lugar</th>
-      </tr>
-      <tr>
-        <td>15/08/2025</td>
-        <td>08:00</td>
-        <td>Salida de Ciudad de Guatemala</td>
-        <td>Terminal de buses</td>
-      </tr>
-      <tr>
-        <td>15/08/2025</td>
-        <td>13:00</td>
-        <td>Llegada y almuerzo</td>
-        <td>Lanquín</td>
-      </tr>
-      <tr>
-        <td>16/08/2025</td>
-        <td>09:00</td>
-        <td>Tour guiado</td>
-        <td>Semuc Champey</td>
-      </tr>
-      <tr>
-        <td>17/08/2025</td>
-        <td>10:00</td>
-        <td>Retorno</td>
-        <td>Ciudad de Guatemala</td>
-      </tr>
-    </table>
-  </section>
-
-  <section id="actividades">
-    <h2>Lista de Actividades</h2>
-    <ul>
-      <li>Nadar en piscinas naturales</li>
-      <li>Explorar cuevas</li>
-      <li>Senderismo por la selva</li>
-      <li>Fotografía de paisajes</li>
-      <li>Rafting en el río Cahabón</li>
-    </ul>
-  </section>
-
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-success text-white text-center p-3 mt-5">
     Página creada por Jonathan Herrera
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
