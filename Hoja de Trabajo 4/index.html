@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Itinerarios y Contacto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Itinerarios -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Itinerarios de Actividades</h2>
+    <div class="d-flex justify-content-center gap-3 mb-4">
+      <button class="btn btn-outline-primary" onclick="mostrarTabla('playa')">Playa</button>
+      <button class="btn btn-outline-success" onclick="mostrarTabla('montaña')">Montaña</button>
+      <button class="btn btn-outline-warning" onclick="mostrarTabla('cultural')">Cultural</button>
+    </div>
+
+    <div id="playa" class="tabla">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-primary"><tr><th>Hora</th><th>Actividad</th></tr></thead>
+          <tbody>
+            <tr><td>08:00</td><td>Desayuno frente al mar</td></tr>
+            <tr><td>10:00</td><td>Natación</td></tr>
+            <tr><td>13:00</td><td>Almuerzo en chiringuito</td></tr>
+            <tr><td>16:00</td><td>Paseo en lancha</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="montaña" class="tabla">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-success"><tr><th>Hora</th><th>Actividad</th></tr></thead>
+          <tbody>
+            <tr><td>07:00</td><td>Senderismo</td></tr>
+            <tr><td>10:00</td><td>Observación de aves</td></tr>
+            <tr><td>13:00</td><td>Picnic en la cima</td></tr>
+            <tr><td>15:00</td><td>Descenso y descanso</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="cultural" class="tabla">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="table-warning"><tr><th>Hora</th><th>Actividad</th></tr></thead>
+          <tbody>
+            <tr><td>09:00</td><td>Visita a museo</td></tr>
+            <tr><td>11:00</td><td>Tour histórico</td></tr>
+            <tr><td>14:00</td><td>Almuerzo típico</td></tr>
+            <tr><td>16:00</td><td>Espectáculo cultural</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comentarios -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Comentarios Destacados</h2>
+    <div id="comentarios" class="row g-4 justify-content-center"></div>
+  </section>
+
+  <!-- Formulario -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Contáctanos</h2>
+    <form id="contactForm" class="row g-3">
+      <div class="col-md-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" required>
+      </div>
+      <div class="col-md-6">
+        <label for="fecha" class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="fecha" required>
+      </div>
+      <div class="col-12">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="col-12">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary px-5">Enviar</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white">
+          <h5 class="modal-title">¡Formulario enviado!</h5>
+        </div>
+        <div class="modal-body">
+          <p>Gracias por contactarnos. Hemos recibido tu mensaje.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
