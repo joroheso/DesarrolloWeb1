@@ -1,0 +1,262 @@
+/* 
+  style_alt.scss — Tema "Quartz"
+  Versión 2 con diseño y nombres completamente distintos.
+  Incluye: variables de color/tipo/espacio, anidación en .header,
+  mixin reutilizable para enlaces del menú y mixin de botón parametrizable.
+*/
+
+@use "sass:map";
+
+// ===============================
+// Tokens de diseño (colores, tipo, espaciado, radios, sombras)
+// ===============================
+$col-key: #7c3aed;          // violeta principal
+$col-key-deep: #4c1d95;     // violeta profundo
+$col-accent: #f97316;       // naranja acento
+$col-paper: #fffdf7;        // superficie cálida
+$col-ink: #111827;          // texto principal
+$col-muted: #6b7280;        // texto secundario
+
+$ffamily: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+$fs-root: 16px;
+$fs-s: 0.9rem;
+$fs-n: 1rem;
+$fs-l: 1.125rem;
+$fs-xl: 2rem;
+
+$gap-1: .375rem;
+$gap-2: .75rem;
+$gap-3: 1.25rem;
+$gap-4: 2.25rem;
+
+$round-s: .5rem;
+$round-l: 1rem;
+$round-pill: 9999px;
+
+$shadow-1: 0 6px 16px rgba(17, 24, 39, .12);
+$shadow-2: 0 10px 28px rgba(17, 24, 39, .18);
+
+// ===============================
+// Escalas de tamaño para botones
+// ===============================
+$press-sizes: (
+  s: (padY: .4rem,  padX: .9rem,  font: .9rem),
+  m: (padY: .55rem, padX: 1.1rem, font: 1rem),
+  l: (padY: .8rem,  padX: 1.35rem,font: 1.125rem)
+);
+
+// ===============================
+// Mixins reutilizables
+// ===============================
+// Enlace de navegación tipo "chip" con subrayado al hover
+@mixin nav-chip($tone: currentColor, $hover-ink: currentColor, $underline: 2px) {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .8rem;
+  color: $tone;
+  text-decoration: none;
+  border-radius: $round-s;
+  position: relative;
+  transition: color .2s ease, background-color .2s ease, transform .08s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: .6rem;
+    right: .6rem;
+    bottom: .3rem;
+    height: 0;
+    border-bottom: $underline solid transparent;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(0,0,0,.05);
+    color: $hover-ink;
+    &::after { border-color: $hover-ink; transform: translateY(1px); }
+  }
+
+  &:active { transform: translateY(1px); }
+}
+
+// Botón presionable con color y escala configurables
+@mixin pressable($bg: $col-accent, $scale: m, $txt: #ffffff) {
+  $conf: map.get($press-sizes, $scale);
+  $py: map.get($conf, padY);
+  $px: map.get($conf, padX);
+  $fz: map.get($conf, font);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: $py $px;
+  font-size: $fz;
+  font-weight: 700;
+  letter-spacing: .015em;
+  text-transform: none;
+  border: 2px solid transparent;
+  border-radius: $round-pill;
+  background: $bg;
+  color: $txt;
+  box-shadow: $shadow-1;
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease, border-color .2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03) saturate(1.05);
+    box-shadow: $shadow-2;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: rgba(0,0,0,.25);
+  }
+
+  &:active { transform: translateY(0); }
+}
+
+// ===============================
+// Base
+// ===============================
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: $fs-root; }
+
+body {
+  margin: 0;
+  background: $col-paper;
+  color: $col-ink;
+  font-family: $ffamily;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ===============================
+// Header (anidación y diseño distinto)
+// ===============================
+// Diseño: encabezado claro con línea inferior doble y navegación con chips
+.header {
+  background: #ffffff;
+  color: $col-ink;
+  padding: $gap-3 $gap-3;
+  border-bottom: 3px double rgba(17,24,39,.12);
+  box-shadow: 0 1px 0 rgba(17,24,39,.04);
+
+  &__title {
+    margin: 0 0 $gap-2 0;
+    font-size: $fs-xl;
+    font-weight: 800;
+    letter-spacing: .3px;
+    color: $col-key;
+  }
+
+  &__nav {
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $gap-2;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    &-item {
+      a { @include nav-chip($tone: $col-ink, $hover-ink: $col-key, $underline: 2px); }
+    }
+  }
+}
+
+// ===============================
+// Contenido (nuevo estilo)
+// ===============================
+// Diseño: columna central, título con “brackets” decorativos
+.content {
+  max-width: 880px;
+  margin: $gap-4 auto;
+  padding: 0 $gap-3;
+
+  &__title {
+    margin: 0 0 $gap-2 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: $col-key-deep;
+    position: relative;
+    line-height: 1.25;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border: 3px solid $col-key;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    &::before { left: -26px; }
+    &::after  { right: -26px; }
+  }
+
+  &__text {
+    margin: 0 0 $gap-3 0;
+    font-size: $fs-n;
+    color: $col-muted;
+  }
+
+  &__button {
+    // Botón en estilo “pill” con acento naranja
+    @include pressable($bg: $col-accent, $scale: l, $txt: #1f2937);
+  }
+}
+
+// ===============================
+// Footer (base diferente)
+// ===============================
+// Diseño: franja oscura con degradado sutil y tipografía pequeña
+.footer {
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  color: rgba(255,255,255,.9);
+  text-align: center;
+  padding: $gap-3 $gap-3;
+  border-top: 1px solid rgba(255,255,255,.12);
+
+  &__text {
+    margin: 0;
+    font-size: $fs-s;
+    letter-spacing: .02em;
+  }
+}
+
+// ===============================
+// Adaptación responsiva (breakpoint distinto)
+// ===============================
+@media (max-width: 680px) {
+  .header {
+    padding: $gap-2 $gap-2;
+
+    &__title {
+      font-size: 1.35rem;
+      letter-spacing: .2px;
+    }
+
+    &__nav-list {
+      gap: $gap-1;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .content {
+    padding: 0 $gap-2;
+
+    &__title {
+      &::before { left: -20px; }
+      &::after  { right: -20px; }
+    }
+  }
+}
