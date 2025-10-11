@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/login', form);
+      const res = await axios.post('/login', form);
       setUser(res.data);
       navigate('/');
     } catch (err) {
@@ -43,5 +43,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;
