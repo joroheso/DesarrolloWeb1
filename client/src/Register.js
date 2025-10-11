@@ -11,7 +11,7 @@ function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/register', form);
+      await axios.post('/register', form);
       navigate('/login');
     } catch (err) {
       alert(err.response.data.message);
@@ -40,5 +40,6 @@ function Register() {
     </div>
   );
 }
+
 
 export default Register;
