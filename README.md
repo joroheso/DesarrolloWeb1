@@ -1,5 +1,3 @@
-Claro, Jonathan. Aquí tienes un README completo en formato Markdown para tu proyecto de autenticación con JWT en Node.js y Express.js, listo para subir a GitHub:
-
 ```markdown
 # 🔐 JWT Auth API
 
@@ -141,7 +139,3 @@ Elimina un usuario por ID (requiere token).
 ✅ Incluye README con descripción, instrucciones y link de despliegue  
 ✅ Repositorio: [https://github.com/tu-usuario/jwt-auth-api](https://github.com/tu-usuario/jwt-auth-api)
 
----
-
-¿Quieres que te ayude a personalizar el link de GitHub o desplegarlo en Render ahora mismo?
-```
