@@ -1,0 +1,67 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  colegiado       String   @unique
+  dpi             String   @unique
+  nombre          String
+  email           String   @unique
+  fechaNacimiento DateTime
+  passwordHash    String
+  role            String   @default("voter")
+  votes           Vote[]
+  quotas          Quota[]
+}
+
+model Campaign {
+  id               Int         @id @default(autoincrement())
+  title            String
+  description      String
+  votesPerCampaign Int
+  status           String      @default("disabled")
+  startAt          DateTime?
+  endAt            DateTime?
+  candidates       Candidate[]
+  votes            Vote[]
+  quotas           Quota[]
+}
+
+model Candidate {
+  id         Int       @id @default(autoincrement())
+  name       String
+  bio        String
+  photoUrl   String?
+  campaign   Campaign  @relation(fields: [campaignId], references: [id])
+  campaignId Int
+  votes      Vote[]
+}
+
+model Vote {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  voter       User      @relation(fields: [voterId], references: [id])
+  voterId     Int
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId Int
+  campaign    Campaign  @relation(fields: [campaignId], references: [id])
+  campaignId  Int
+}
+
+model Quota {
+  voter      User     @relation(fields: [voterId], references: [id])
+  voterId    Int
+
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
+  campaignId Int
+
+  remaining  Int
+
+  @@id([voterId, campaignId])
+}
